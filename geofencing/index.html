@@ -8,7 +8,8 @@ navigator.serviceWorker.register("sw.js", {scope: "./"}).then(
   }, function(why) {
     console.log("install failed:", why);
     console.log(why);
-    console.log("bah");
+    console.log(why.code);
+    console.log(why.name);
   }
 );
 </script>
