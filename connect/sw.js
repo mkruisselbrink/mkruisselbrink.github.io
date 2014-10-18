@@ -4,12 +4,17 @@ self.addEventListener('fetch', function(event) {
   // for now assume all urls are connectable
   event.respondWith(
     new Response("<!DOCTYPE html><html><script>" + 
-      "window.onmessage = function(e) { " + 
-      "console.log(e);" +
-        "var port = e.ports[0]; " +
-        "port.onmessage = function(ep) { " +
-          "navigator.serviceWorker.controller.postMessage({foreignMessage: ep.data}, ep.ports); " +
-        "}; " +
+      "var port;" +
+      "window.onmessage = function(e) {" + 
+        "console.log(e);" +
+        "if (e.source instanceof Window) {" +
+          "port = e.ports[0]; " +
+          "port.onmessage = function(ep) { " +
+            "navigator.serviceWorker.controller.postMessage({foreignMessage: ep.data}, ep.ports); " +
+          "}; " +
+        "} else {" +
+          "port.postMessage(e.data, e.ports);" +
+        "}" +
       "};</script></html>",
                  {headers: {'content-type': 'text/html'}})
   );
