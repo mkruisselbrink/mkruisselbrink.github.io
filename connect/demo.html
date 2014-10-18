@@ -11,6 +11,7 @@ navigator.connect(targetUrl)
   .then(function(port) {
       console.log('connected');
       console.log(port);
+      port.postMessage('hello');
     })
   .catch(function(why) {
       console.log('failed');
