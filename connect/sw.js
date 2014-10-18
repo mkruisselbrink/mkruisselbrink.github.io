@@ -7,13 +7,13 @@ self.addEventListener('fetch', function(event) {
       "var port;" +
       "window.onmessage = function(e) {" + 
         "console.log(e);" +
-        "if (e.source instanceof Window) {" +
+        "if (e.data == 'connect') {" +
           "port = e.ports[0]; " +
           "port.onmessage = function(ep) { " +
             "navigator.serviceWorker.controller.postMessage({foreignMessage: ep.data}, ep.ports); " +
           "}; " +
-        "} else {" +
-          "port.postMessage(e.data, e.ports);" +
+        "} else if ('reply' in e.data) {" +
+          "port.postMessage(e.data['reply'], e.ports);" +
         "}" +
       "};</script></html>",
                  {headers: {'content-type': 'text/html'}})
@@ -33,7 +33,7 @@ self.addEventListener('message', function(event) {
           // event.source.postMessage(msg, transfer);
           self.clients.getAll()
             .then(function(clients) {
-                clients[0].postMessage(msg, transfer);
+                clients[0].postMessage({reply: msg}, transfer);
               });
         }
       }
