@@ -6,7 +6,6 @@ self.addEventListener('fetch', function(event) {
     new Response("<!DOCTYPE html><html><script>" + 
       "var port;" +
       "window.onmessage = function(e) {" + 
-        "console.log(e);" +
         "if (e.data == 'connect') {" +
           "port = e.ports[0]; " +
           "port.onmessage = function(ep) { " +
