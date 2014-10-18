@@ -7,11 +7,13 @@
 <h1>navigator.connect</h1>
 <script>
 var targetUrl = 'https://mkruisselbrink.github.io/connect/services/test-service';
+var thaport;
 navigator.connect(targetUrl)
   .then(function(port) {
       console.log('connected');
       console.log(port);
       port.postMessage('hello');
+      thaport = port;
     })
   .catch(function(why) {
       console.log('failed');

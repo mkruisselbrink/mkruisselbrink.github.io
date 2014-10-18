@@ -1,11 +1,14 @@
 
 navigator.connect = function(url) {
+  var origin = 'https://mkruisselbrink.github.io';
   var iframe = document.createElement('iframe');
   //iframe.style.display = 'none';
   var p = new Promise(function(resolve, reject) {
     iframe.onload = function(event) {
       console.log("loaded");
-      reject('foo');
+      var channel = new MessageChannel();
+      iframe.contentWindow.postMessage('connect', origin, [channel.port2]);
+      resolve(channel.port1);
     };
   });
   iframe.setAttribute('src', url);
