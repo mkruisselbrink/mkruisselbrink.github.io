@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<script>
+navigator.serviceWorker.register("sw.js", {scope: "./services"})
+  .then(function(registration) {
+      console.log("registered");
+    })
+  .catch(function(why) {
+    console.log("install failed:", why);
+  });
+</script>

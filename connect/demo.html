@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>navigator.connect demo</title>
+<script src="client.js"></script>
+</head>
+<body>
+<h1>navigator.connect</h1>
+<script>
+var targetUrl = 'https://mkruisselbrink.github.io/connect/services/test-service';
+navigator.connect(targetUrl)
+  .then(function(port) {
+      console.log('connected');
+      console.log(port);
+    })
+  .catch(function(why) {
+      console.log('failed');
+      console.log(why);
+  });
+</script>
+</body>
+</html>
