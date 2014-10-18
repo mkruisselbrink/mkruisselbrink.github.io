@@ -23,7 +23,13 @@ self.addEventListener('message', function(event) {
       ports: event.ports,
       source: {
         postMessage: function(msg, transfer) {
-          event.source.postMessage(msg, transfer);
+          // TODO: should just reply to event.source. but that doesn't exist
+          //    so for now respond to the first client
+          // event.source.postMessage(msg, transfer);
+          self.clients.getAll()
+            .then(function(clients) {
+                clients[0].postMessage(msg, transfer);
+              });
         }
       }
     };
