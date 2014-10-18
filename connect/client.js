@@ -1,11 +1,14 @@
 
 navigator.connect = function(url) {
   var iframe = document.createElement('iframe');
-  iframe.setAttribute('src', url);
   //iframe.style.display = 'none';
-  document.body.appendChild(iframe);
   var p = new Promise(function(resolve, reject) {
-    reject('foo');
+    iframe.onload = function(event) {
+      console.log("loaded");
+      reject('foo');
+    };
   });
+  iframe.setAttribute('src', url);
+  document.body.appendChild(iframe);
   return p;
 };
