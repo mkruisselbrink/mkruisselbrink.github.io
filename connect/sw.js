@@ -22,7 +22,7 @@ self.addEventListener('message', function(event) {
       data: event.data['foreignMessage'],
       ports: event.ports,
       source: {
-        postMessage = function(msg, transfer) {
+        postMessage: function(msg, transfer) {
           event.source.postMessage(msg, transfer);
         }
       }
