@@ -1,6 +1,8 @@
 
-//importScripts("service.js");
+self.version = 1;
 
+//importScripts("service.js");
+//self.update();
 
 var connectableUrls;
 
