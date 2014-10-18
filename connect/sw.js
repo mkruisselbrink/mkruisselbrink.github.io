@@ -11,6 +11,6 @@ self.addEventListener('fetch', function(event) {
   // for now assume all urls are connectable
   event.respondWith(
     new Response("<!DOCTYPE html><html><body>foo</body></html>",
-                 {headers: 'content-type: text/html'});
+                 {headers: 'content-type: text/html'})
   );
 });
