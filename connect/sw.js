@@ -1,3 +1,7 @@
+self.addEventListener('foreignconnect', function(event) {
+  console.log(event);
+
+});
 
 self.addEventListener('fetch', function(event) {
   console.log(event.request);
