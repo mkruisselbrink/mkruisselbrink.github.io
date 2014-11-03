@@ -78,7 +78,7 @@ function handleForeignConnect(data) {
   var replied = false;
   var targetUrl = data[kForeignConnectMessageTag];
   if (targetUrl.indexOf(kUrlSuffix, targetUrl.length - kUrlSuffix.length) !== -1) {
-    targetUrl = targetUrl.substr(0, targetUrl.length - kUrlSuffig.length);
+    targetUrl = targetUrl.substr(0, targetUrl.length - kUrlSuffix.length);
   }
   dispatchCustomEvent('foreignconnect', {
     acceptConnection: function(accept) {
