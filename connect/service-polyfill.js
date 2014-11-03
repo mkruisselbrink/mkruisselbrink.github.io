@@ -66,7 +66,7 @@ self.addEventListener('fetch', function(event) {
             "};\n" +
             "e.data.connect.postMessage({connected: client_channel.port2}, [client_channel.port2]);\n" +
           "};\n" +
-          "navigator.serviceWorker.controller.postMessage({" + kForeignConnectMessageTag + ": 'foo', port: service_channel.port2}, [service_channel.port2]);\n" +
+          "navigator.serviceWorker.controller.postMessage({" + kForeignConnectMessageTag + ": document.location.href, port: service_channel.port2}, [service_channel.port2]);\n" +
         "}\n" +
       "};</script>",
                  {headers: {'content-type': 'text/html'}})
@@ -80,7 +80,8 @@ function handleForeignConnect(data) {
     acceptConnection: function(accept) {
       replied = true;
       data.port.postMessage({connectResult: accept});
-    }
+    },
+    targetUrl: data[kForeignConnectMessageTag]
   });
   if (!replied)
     data.port.postMessage({connectResult: false});
