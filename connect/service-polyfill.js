@@ -85,7 +85,7 @@ function handleForeignConnect(data) {
       replied = true;
       data.port.postMessage({connectResult: accept});
     },
-    targetUrl: data[kForeignConnectMessageTag]
+    targetUrl: targetUrl
   });
   if (!replied)
     data.port.postMessage({connectResult: false});
