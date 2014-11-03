@@ -18,6 +18,7 @@ if ('onforeignconnect' in self) return;
 
 var kForeignConnectMessageTag = 'foreignConnect';
 var kForeignMessageMessageTag = 'foreignMessage';
+var kUrlSuffix = '?navigator-connect-service';
 
 var customListeners = {'foreignconnect': [], 'foreignmessage': []};
 
@@ -37,9 +38,8 @@ function dispatchCustomEvent(type, event) {
 }
 
 self.addEventListener('fetch', function(event) {
-  var suffix = '?navigator-connect-service';
   var targetUrl = event.request.url;
-  if (targetUrl.indexOf(suffix, targetUrl.length - suffix.length) === -1) {
+  if (targetUrl.indexOf(kUrlSuffix, targetUrl.length - kUrlSuffix.length) === -1) {
     // Not a navigator-connect attempt
     return;
   }
@@ -76,6 +76,10 @@ self.addEventListener('fetch', function(event) {
 
 function handleForeignConnect(data) {
   var replied = false;
+  var targetUrl = data[kForeignConnectMessageTag];
+  if (targetUrl.indexOf(kUrlSuffix, targetUrl.length - kUrlSuffix.length) !== -1) {
+    targetUrl = targetUrl.substr(0, targetUrl.length - kUrlSuffig.length);
+  }
   dispatchCustomEvent('foreignconnect', {
     acceptConnection: function(accept) {
       replied = true;
