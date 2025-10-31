@@ -4,6 +4,14 @@
     "display": "standalone",
     "scope": "./",
     "start_url": "./index.html",
+    "icons": [
+        {
+            "src": "https://googlechrome.github.io/samples/pwa-testing/aeolian-grandiose-cayenne/aeolian-grandiose-cayenne.png",
+            "purpose": "any maskable",
+            "sizes": "500x500",
+            "type": "image/png"
+        }
+    ],
     "migrate_from": [
         "https://googlechrome.github.io/samples/pwa-testing/delirious-twilight-scene/"
     ]
