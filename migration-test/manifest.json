@@ -1,0 +1,10 @@
+{
+    "name":"Migrated App",
+    "description": "App that was migrated",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "./index.html",
+    "migrate_from": [
+        "https://googlechrome.github.io/samples/pwa-testing/delirious-twilight-scene/"
+    ]
+}
